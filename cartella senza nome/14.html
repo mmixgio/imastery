@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Mastery</title>
+    <link rel="stylesheet" href="style.css">
+    <body>
+        <nav class="navbar">
+            <div class="navbar-brand">I Mastery</div>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="sitoweb.html">Home</a></li>
+                <li class="navbar-item"><a href="shop.html">Shop</a></li>
+                <li class="navbar-item"><a href="Cookie.html">Cookie & Policy</a></li>
+                <li class="navbar-item"><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+        <div class="yellow-bar">
+            <span class="moving-text">Con il codice "PROPHONE10" potrai avere il 5% di sconto su tutti gli artioli.</span>
+        </div>
+
+     <header>
+        <div class="cart-icon">
+            
+            <a href="cart.html">
+                
+                <img src="shopping-cart_icon-icons.png" alt="Carrello" />
+                <span id="cart-count">0</span>
+            </a>
+        </div>
+     </header>   
+        <main1>
+            <div class="product-page">
+                <div class="product-image">
+                    <img src="iphone-14-finish-select-202209-6-1inch-midnight-removebg-preview.png" alt="Giacca a Vento Kona - Verde Oliva">
+                </div>
+                <div class="product-details">
+                    <h1>iPhone 14</h1>
+                    <p class="price">€ 749.99</p>
+                    <h2>⬇Informazioni sul prodotto⬇</h2>
+                    <p class="description">L'iPhone 14 introduce significativi miglioramenti alla fotocamera con un nuovo sistema di lenti e un sensore di immagine più grande per fotografie incredibili in qualsiasi condizione di luce. Dotato del chip A15 Bionic, offre prestazioni elevate e una maggiore efficienza energetica. Nuove funzionalità di sicurezza e un design resistente all'acqua e alla polvere.</p>
+                    <br>
+                    <button onclick="addToCart('iPhone 14', 749.99, 'iphone-14-finish-select-202209-6-1inch-midnight-removebg-preview.png')">Aggiungi al Carrello</button>
+                    <button class="buy-now" onclick="buyNow('iPhone 14', 749.99, 'iphone-14-finish-select-202209-6-1inch-midnight-removebg-preview.png')">Acquista</button>
+                    
+                </div>
+            </div>
+        </main1>
+        
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+    const testimonialCards = document.querySelector(".testimonial-cards");
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+
+    let scrollAmount = 0;
+    const cardWidth = document.querySelector(".testimonial-card").offsetWidth;
+
+    // Funzione per scorrere automaticamente le recensioni
+    function autoScroll() {
+        scrollAmount += cardWidth;
+        if (scrollAmount > testimonialCards.scrollWidth - testimonialCards.clientWidth) {
+            scrollAmount = 0;
+        }
+        testimonialCards.scrollTo({
+            top: 0,
+            left: scrollAmount,
+            behavior: "smooth"
+        });
+    }
+
+    // Intervallo per lo scorrimento automatico ogni 5 secondi
+    let scrollInterval = setInterval(autoScroll, 2000);
+
+    // Gestione del click sui pulsanti di navigazione
+    nextButton.addEventListener("click", function() {
+        clearInterval(scrollInterval); // Interrompe lo scorrimento automatico al click
+        autoScroll();
+        scrollInterval = setInterval(autoScroll, 5000); // Riavvia lo scorrimento automatico
+    });
+
+    prevButton.addEventListener("click", function() {
+        clearInterval(scrollInterval); // Interrompe lo scorrimento automatico al click
+        scrollAmount -= cardWidth;
+        if (scrollAmount < 0) {
+            scrollAmount = testimonialCards.scrollWidth - testimonialCards.clientWidth;
+        }
+        testimonialCards.scrollTo({
+            top: 0,
+            left: scrollAmount,
+            behavior: "smooth"
+        });
+        scrollInterval = setInterval(autoScroll, 5000); // Riavvia lo scorrimento automatico
+    });
+});
+
+function addToCart(productName, productPrice, productImage) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ name: productName, price: productPrice, image: productImage });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert(`${productName} è stato aggiunto al carrello a €${productPrice.toFixed(2)}`);
+}
+
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById('cart-count').innerText = cart.length;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Funzione per il pulsante "Acquista"
+    window.buyNow = function(productName, productPrice, productImage) {
+        // Logica per gestire i dettagli del prodotto (se necessaria)
+        console.log(`Prodotto: ${productName}, Prezzo: ${productPrice}, Immagine: ${productImage}`);
+        // Apri il file index.html
+        window.location.href = 'out.html';
+    };
+});
+
+
+
+        </script>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/imastery___?igsh=ZjJnOGp6amJ5dXcy&utm_source=qr" target="_blank" rel="noopener noreferrer"><img src="unnamed.png" alt="Icona Instagram"></a>
+            <a href="https://www.tiktok.com/@iprotips?_t=8nLM6nDzxKK&_r=1" target="_blank" rel="noopener noreferrer"><img src="33c95aa832f49c5886c3a7fc47bb8aef-2.png" alt="Icona TikTok"></a>
+            <a href="https://t.me/iphresell" target="_blank" rel="noopener noreferrer"><img src="telegram-black-icon.png" alt="Icona Telegram"></a>
+        </div>
+        <div class="container">
+            
+            <p>Copyright © 2000–2024 IMastery S.P.A. Tutti i diritti riservati.</p>
+            <ul class="social-links">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
